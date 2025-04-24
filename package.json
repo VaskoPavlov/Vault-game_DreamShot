@@ -1,0 +1,25 @@
+{
+  "name": "vault-game_dreamshot",
+  "version": "1.0.0",
+  "description": "Vault-game",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "npm build"
+  },
+  "author": "VPP",
+  "license": "ISC",
+  "dependencies": {
+    "@pixi/app": "^7.4.3",
+    "@pixi/display": "^7.4.3",
+    "@pixi/graphics": "^7.4.3",
+    "@pixi/loaders": "^6.5.10",
+    "@pixi/sprite": "^7.4.3",
+    "@pixi/text": "^7.4.3",
+    "@pixi/utils": "^7.4.3"
+  },
+  "devDependencies": {
+    "@types/pixi.js": "^4.8.9",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.2"
+  }
+}

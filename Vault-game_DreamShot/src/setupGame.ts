@@ -1,0 +1,81 @@
+import { Application } from '@pixi/app';
+// import { Sprite } from '@pixi/sprite';
+import { generateCombination, Direction } from './game/combo';
+// import { createUI } from './setup/createUI';
+import { DESIGN_WIDTH, DESIGN_HEIGHT } from './constants';
+import { createClickZones } from './setup/createClickZones';
+import { setupTimer } from './setup/setupTimer';
+import { createScene } from './setup/createScene';
+import { createVault } from './setup/createVault';
+import { Text, TextStyle } from '@pixi/text';
+// import { Container } from '@pixi/display';
+import gsap from 'gsap';
+
+export function setupGame(app: Application) {
+    console.log('🚀 Running setup');
+  
+    let secretCombo = generateCombination();
+    let turnCount = 0;
+    let currentRotation = 0;
+  
+    // UI elements
+    const timerText = new Text('00:00', new TextStyle({
+      fontFamily: 'Courier',
+      fontSize: 14,
+      fill: 0xffffff,
+      align: 'center',
+    }));
+    timerText.anchor.set(0.5);
+    timerText.x = 390;
+    timerText.y = 290;
+  
+    const statusText = new Text('', new TextStyle({
+      fontSize: 32,
+      fill: 0x000000,
+    }));
+    statusText.position.set(50, 50);
+  
+    const { scene, door, handle, handleShadow } = createScene();
+    scene.addChild(timerText);
+  
+    const { startTimer } = setupTimer(timerText);
+    startTimer();
+  
+    const reset = () => {
+      app.stage.removeChildren();
+      setupGame(app);
+    };
+  
+    const vault = createVault(secretCombo, door, handle, handleShadow, statusText, reset);
+  
+    const clickZones = createClickZones((direction: Direction) => {
+      turnCount = (turnCount % 9) + 1;
+      vault.inputTurn(turnCount, direction);
+  
+      const delta = direction === 'clockwise' ? 60 : -60;
+      currentRotation += delta;
+      const radians = (currentRotation * Math.PI) / 180;
+  
+      if (handle?.transform && handleShadow?.transform) {
+        gsap.to([handle, handleShadow], {
+          rotation: radians,
+          duration: 0.4,
+          ease: 'power2.out',
+        });
+      }
+    });
+  
+    scene.addChild(...clickZones);
+  
+    // Scale and center scene
+    const scale = Math.min(
+      app.screen.width / DESIGN_WIDTH,
+      app.screen.height / DESIGN_HEIGHT
+    );
+    scene.scale.set(scale);
+    scene.x = (app.screen.width - DESIGN_WIDTH * scale) / 2;
+    scene.y = (app.screen.height - DESIGN_HEIGHT * scale) / 2;
+  
+    app.stage.addChild(scene);
+    app.stage.addChild(statusText);
+}
