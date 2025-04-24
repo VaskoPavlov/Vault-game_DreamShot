@@ -2,7 +2,7 @@ import { Application } from '@pixi/app';
 // import { Sprite } from '@pixi/sprite';
 import { generateCombination, Direction } from './game/combo';
 // import { createUI } from './setup/createUI';
-import { DESIGN_WIDTH, DESIGN_HEIGHT } from './constants';
+import { DESIGN_WIDTH, DESIGN_HEIGHT } from './utils/consts/constants';
 import { createClickZones } from './setup/createClickZones';
 import { setupTimer } from './setup/setupTimer';
 import { createScene } from './setup/createScene';

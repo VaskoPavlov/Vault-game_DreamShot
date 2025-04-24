@@ -1,6 +1,6 @@
 import { Graphics } from '@pixi/graphics';
 import { Rectangle } from '@pixi/math';
-import { DESIGN_WIDTH, DESIGN_HEIGHT } from '../constants';
+import { DESIGN_WIDTH, DESIGN_HEIGHT } from '../utils/consts/constants';
 import type { Direction } from '../game/combo';
 
 type InteractiveGraphics = Graphics & {

@@ -1,6 +1,6 @@
 import { Container } from '@pixi/display';
 import { Sprite } from '@pixi/sprite';
-import { DESIGN_WIDTH, DESIGN_HEIGHT, DOOR_X, DOOR_Y } from '../constants';
+import { DESIGN_WIDTH, DESIGN_HEIGHT, DOOR_X, DOOR_Y } from '../utils/consts/constants';
 
 export function createScene(): { scene: Container; bg: Sprite; door:Sprite; handle:Sprite; handleShadow:Sprite } {
       const scene = new Container();
