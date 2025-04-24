@@ -1,23 +1,23 @@
 ## Vault Game
 
-[ ] Use assets provided
-[ ] Use PIXI.js and GSAP
-[ ] Use TS
-[ ] Game must be reponsive in diff screen resolutions
-[ ] Repo must have at least 5 commits
+[X] Use assets provided
+[X] Use PIXI.js and GSAP
+[X] Use TS
+[X] Game must be reponsive in diff screen resolutions
+[X] Repo must have at least 5 commits
 
 # Tips
-[ ] Read carefully through the task
-[ ] Use any PIXI boilerplate
-[ ] Time myself
-[ ] Ask for questions 
+[X] Read carefully through the task
+[X] Use any PIXI boilerplate
+[X] Time myself
+[X] Ask for questions 
 
 # Bonus Points
-[ ] Use of promises is a must
-[ ] Making a shadow for the handle
-[ ] Making a couter n the left side of the screen 
+[X] Use of promises is a must
+[X] Making a shadow for the handle
+[X] Making a couter n the left side of the screen 
   * it should reset everytime new combination is generated 
-[ ] After a win
+[X] After a win
   * vault should open
   * after 5 seconds the door should close 
   * lock should spin like crazy
