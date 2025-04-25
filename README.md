@@ -52,12 +52,14 @@ Vault-game_DreamShot
    cd Vault-game_DreamShot
 
 2. **Install dependencies**
+   
     npm install
     # or
     yarn
 
 3. **Start development server**
-   npm run dev
+    
+    npm run dev
     # or
     yarn dev
 
