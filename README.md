@@ -6,6 +6,7 @@ This is a browser-based vault combination game built using [PIXI.js](https://pix
 
 ## 📁 Project Structure
 
+```
 Vault-game_DreamShot
 ├── public
 │   ├── assets
@@ -41,6 +42,7 @@ Vault-game_DreamShot
 ├── package.json
 ├── tsconfig.json
 └── README.md
+```
 
 ## 📦 Installation & Setup
 
