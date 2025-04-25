@@ -1,7 +1,7 @@
 import { Sprite } from '@pixi/sprite';
 import { Vault } from '../game/vault';
 import { Text } from '@pixi/text';
-import { wait } from '../utils';
+import { wait } from '../utils/utils';
 import { CombinationStep } from '../game/combo';
 
 
