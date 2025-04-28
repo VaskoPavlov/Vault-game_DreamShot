@@ -24,7 +24,6 @@
     "@pixi/assets": "^7.4.3",
     "@pixi/events": "^7.4.3",
     "@pixi/graphics": "^7.4.3",
-    "@pixi/interaction": "^6.5.10",
     "@pixi/math": "^7.4.3",
     "@pixi/sprite": "^7.4.3",
     "@pixi/text": "^7.4.3",
