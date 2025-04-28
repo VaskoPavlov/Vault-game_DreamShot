@@ -57,12 +57,21 @@ Vault-game_DreamShot
     # or
     yarn
 
-3. **Start development server**
+3. **Navigate to Vault-game_DreamShot**
+   cd Vault-game_DreamShot
+
+4. **Install dependencies**
+   
+    npm install
+    # or
+    yarn
+    
+5. **Start development server**
     
     npm run dev
     # or
     yarn dev
 
-4. **Then open http://localhost:8080 in your browser.**
+6. **Then open the localhost that appears in your terminal to play the game in your browser.**
 
 This project is for educational purposes.
