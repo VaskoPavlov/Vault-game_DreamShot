@@ -15,7 +15,6 @@ export function createScene(): { scene: Container; bg: Sprite; door:Sprite; hand
       door.anchor.set(0.5);
       door.x = DOOR_X;
       door.y = DOOR_Y;
-      door.scale.set(0.21);
       scene.addChild(door);
     
       const handleShadow = Sprite.from('assets/handleShadow.png');
@@ -24,8 +23,6 @@ export function createScene(): { scene: Container; bg: Sprite; door:Sprite; hand
       handle.anchor.set(0.49);
       handleShadow.x = handle.x = 635;
       handleShadow.y = handle.y = door.y;
-      handleShadow.scale.set(0.20);
-      handle.scale.set(0.20);
       scene.addChild(handleShadow);
       scene.addChild(handle);
     

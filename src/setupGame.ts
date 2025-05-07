@@ -1,14 +1,11 @@
 import { Application } from '@pixi/app';
-// import { Sprite } from '@pixi/sprite';
 import { generateCombination, Direction } from './game/combo';
-// import { createUI } from './setup/createUI';
 import { DESIGN_WIDTH, DESIGN_HEIGHT } from './utils/consts/constants';
 import { createClickZones } from './setup/createClickZones';
 import { setupTimer } from './setup/setupTimer';
 import { createScene } from './setup/createScene';
 import { createVault } from './setup/createVault';
 import { Text, TextStyle } from '@pixi/text';
-// import { Container } from '@pixi/display';
 import gsap from 'gsap';
 
 export function setupGame(app: Application) {
@@ -18,7 +15,6 @@ export function setupGame(app: Application) {
     let turnCount = 0;
     let currentRotation = 0;
   
-    // UI elements
     const timerText = new Text('00:00', new TextStyle({
       fontFamily: 'Courier',
       fontSize: 14,
@@ -36,7 +32,6 @@ export function setupGame(app: Application) {
     statusText.position.set(50, 50);
   
     const { scene, door, handle, handleShadow } = createScene();
-    scene.addChild(timerText);
   
     const { startTimer } = setupTimer(timerText);
     startTimer();
@@ -65,17 +60,25 @@ export function setupGame(app: Application) {
       }
     });
   
+    scene.addChild(timerText);
     scene.addChild(...clickZones);
-  
-    // Scale and center scene
-    const scale = Math.min(
-      app.screen.width / DESIGN_WIDTH,
-      app.screen.height / DESIGN_HEIGHT
-    );
-    scene.scale.set(scale);
-    scene.x = (app.screen.width - DESIGN_WIDTH * scale) / 2;
-    scene.y = (app.screen.height - DESIGN_HEIGHT * scale) / 2;
-  
     app.stage.addChild(scene);
     app.stage.addChild(statusText);
+  
+    const resizeScene = () => {
+      app.renderer.resize(window.innerWidth, window.innerHeight);
+  
+      const scale = Math.min(
+        app.screen.width / DESIGN_WIDTH,
+        app.screen.height / DESIGN_HEIGHT
+      );
+  
+      scene.pivot.set(DESIGN_WIDTH / 2, DESIGN_HEIGHT / 2);
+      scene.position.set(app.screen.width / 2, app.screen.height / 2);
+      scene.scale.set(scale);
+    };
+  
+    resizeScene();
+  
+    window.addEventListener('resize', resizeScene);
 }
