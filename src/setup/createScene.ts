@@ -1,8 +1,8 @@
 import { Container } from '@pixi/display';
 import { Sprite } from '@pixi/sprite';
-import { DESIGN_WIDTH, DESIGN_HEIGHT, DOOR_X, DOOR_Y } from '../utils/consts/constants';
+import { DESIGN_WIDTH, DESIGN_HEIGHT, DOOR_X, DOOR_Y, DOOROPEN_X, DOOROPEN_Y, DOOROPENSHADOW_X, DOOROPENSHADOW_Y } from '../utils/consts/constants';
 
-export function createScene(): { scene: Container; bg: Sprite; door:Sprite; handle:Sprite; handleShadow:Sprite } {
+export function createScene(): { scene: Container; bg: Sprite; door:Sprite; handle:Sprite; handleShadow:Sprite; doorOpen: Sprite; doorOpenShadow: Sprite } {
       const scene = new Container();
     
       const bg = Sprite.from('assets/bg.png');
@@ -25,13 +25,25 @@ export function createScene(): { scene: Container; bg: Sprite; door:Sprite; hand
       handleShadow.y = handle.y = door.y;
       scene.addChild(handleShadow);
       scene.addChild(handle);
+
+      const doorOpen = Sprite.from('assets/doorOpen.png');
+      doorOpen.x = DOOROPEN_X;
+      doorOpen.y = DOOROPEN_Y;
+      doorOpen.anchor.set(0.5);
+
+      const doorOpenShadow = Sprite.from('assets/doorOpenShadow.png');
+      doorOpenShadow.x = DOOROPENSHADOW_X;
+      doorOpenShadow.y = DOOROPENSHADOW_Y;
+      doorOpenShadow.anchor.set(0.5);
     
       return {
         scene,
         bg,
         door,
         handle,
-        handleShadow
+        handleShadow,
+        doorOpenShadow,
+        doorOpen
       };
     }
     

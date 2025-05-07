@@ -31,7 +31,7 @@ export function setupGame(app: Application) {
     }));
     statusText.position.set(50, 50);
   
-    const { scene, door, handle, handleShadow } = createScene();
+    const { scene, door, handle, handleShadow, doorOpenShadow, doorOpen } = createScene();
   
     const { startTimer } = setupTimer(timerText);
     startTimer();
@@ -41,7 +41,7 @@ export function setupGame(app: Application) {
       setupGame(app);
     };
   
-    const vault = createVault(secretCombo, door, handle, handleShadow, statusText, reset);
+    const vault = createVault(secretCombo, door, handle, handleShadow, statusText, doorOpenShadow, doorOpen, reset);
   
     const clickZones = createClickZones((direction: Direction) => {
       turnCount = (turnCount % 9) + 1;

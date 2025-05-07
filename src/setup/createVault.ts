@@ -11,17 +11,24 @@ export function createVault(
   handle: Sprite,
   handleShadow: Sprite,
   statusText: Text,
+  doorOpenShadow: Sprite,
+  doorOpen:Sprite,
   reset: () => void
 ) {
   return new Vault(
-    combo, // You can inject the generated combo here
+    combo, 
     async () => {
       statusText.text = '✔ Vault Unlocked!';
       statusText.style.fill = 0x00ff00;
+
+      const parent = door.parent!;
       handle.destroy();
       handleShadow.destroy();
       door.destroy();
-      // You can add doorOpen + shadow logic here too
+
+      parent.addChild(doorOpenShadow);
+      parent.addChild(doorOpen);
+
       await wait(5000);
       reset();
     },
