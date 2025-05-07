@@ -37,8 +37,20 @@ export function setupGame(app: Application) {
     startTimer();
   
     const reset = () => {
-      app.stage.removeChildren();
-      setupGame(app);
+      if (handle?.transform && handleShadow?.transform) {
+        gsap.to([handle, handleShadow], {
+          angle: '+=1080',
+          duration: 0.6,
+          ease: 'power2.in',
+          onComplete: () => {
+            app.stage.removeChildren();
+            setupGame(app);
+          },
+        });
+      } else {
+        app.stage.removeChildren();
+        setupGame(app);
+      }
     };
   
     const vault = createVault(secretCombo, door, handle, handleShadow, statusText, doorOpenShadow, doorOpen, reset);
