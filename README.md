@@ -49,7 +49,6 @@ Vault-game_DreamShot
 1. **Clone the repo**  
    ```bash
    git clone https://github.com/VaskoPavlov/Vault-game_DreamShot.git
-   cd Vault-game_DreamShot
 
 2. **Install dependencies**
    

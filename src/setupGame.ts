@@ -52,7 +52,7 @@ export function setupGame(app: Application) {
       turnCount = (turnCount % 9) + 1;
       vault.inputTurn(turnCount, direction);
   
-      const delta = direction === 'clockwise' ? 60 : -60;
+      const delta = direction === 'CLOCKWISE' ? 60 : -60;
       currentRotation += delta;
       const radians = (currentRotation * Math.PI) / 180;
   

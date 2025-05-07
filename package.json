@@ -1,24 +1,36 @@
 {
-  "name": "vault-game_dreamshot",
+  "name": "vault-game-dreamshot",
   "version": "1.0.0",
   "description": "Vault-game",
-  "main": "src/main.ts",
+  "type": "module",
   "scripts": {
-    "test": "npm build"
+    "start": "npm run dev",
+    "build": "npm run lint && tsc && vite build",
+    "test": "npm build",
+    "lint": "eslint .",
+    "dev": "vite"
   },
-  "author": "VPP",
-  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.25.0",
+    "vite": "^6.3.2",
+    "@types/pixi.js": "^4.8.9"
+  },
   "dependencies": {
     "@pixi/app": "^7.4.3",
     "@pixi/display": "^7.4.3",
     "@pixi/graphics": "^7.4.3",
     "@pixi/sprite": "^7.4.3",
     "@pixi/text": "^7.4.3",
-    "@pixi/utils": "^7.4.3"
-  },
-  "devDependencies": {
-    "@types/pixi.js": "^4.8.9",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.2"
+    "@pixi/utils": "^7.4.3",
+    "@pixi/assets": "^7.4.3",
+    "@pixi/events": "^7.4.3",
+    "@pixi/math": "^7.4.3",
+    "gsap": "^3.12.7"
   }
 }

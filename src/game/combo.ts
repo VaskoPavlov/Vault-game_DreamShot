@@ -1,4 +1,4 @@
-export type Direction = 'clockwise' | 'counterclockwise';
+export type Direction = 'CLOCKWISE' | 'COUNTERCLOCKWISE';
 
 export interface CombinationStep {
   value: number;        
@@ -8,15 +8,19 @@ export interface CombinationStep {
 const numOfCombs = 3;
 export function generateCombination(): CombinationStep[] {
   const combo: CombinationStep[] = [];
-  const directions: Direction[] = ['clockwise', 'counterclockwise'];
+  const directions: Direction[] = ['CLOCKWISE', 'COUNTERCLOCKWISE'];
   const startIndex = Math.floor(Math.random() * 2);
 
   for (let i = 0; i < numOfCombs; i++) {
     const value = Math.floor(Math.random() * 9) + 1;
     const direction = directions[(startIndex + i) % 2];
     combo.push({ value, direction });
+    combo.toString();
   }
 
-  console.log('%c[Vault Combo]', 'color: gold;', combo);
+  console.log('%c[Vault Combo]', `color: gold;`, 
+              `value: ${combo[0].value} -> direction: ${combo[0].direction}`,
+              `value: ${combo[1].value} -> direction: ${combo[1].direction}`,
+              `value: ${combo[2].value} -> direction: ${combo[2].direction}`);
   return combo;
 }

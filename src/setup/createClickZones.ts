@@ -20,7 +20,7 @@ export function createClickZones(
   leftZone.eventMode = 'static';
   leftZone.cursor = 'pointer';
   leftZone.hitArea = new Rectangle(0, 0, DESIGN_WIDTH / 2, DESIGN_HEIGHT);
-  leftZone.on('pointertap', () => onTurn('counterclockwise'));
+  leftZone.on('pointertap', () => onTurn('COUNTERCLOCKWISE'));
 
   const rightZone = new Graphics() as InteractiveGraphics;
   rightZone.beginFill(0xff0000, 0)
@@ -29,7 +29,7 @@ export function createClickZones(
   rightZone.eventMode = 'static';
   rightZone.cursor = 'pointer';
   rightZone.hitArea = new Rectangle(DESIGN_WIDTH / 2, 0, DESIGN_WIDTH / 2, DESIGN_HEIGHT);
-  rightZone.on('pointertap', () => onTurn('clockwise'));
+  rightZone.on('pointertap', () => onTurn('CLOCKWISE'));
 
   return [leftZone, rightZone];
 }
