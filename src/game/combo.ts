@@ -19,8 +19,8 @@ export function generateCombination(): CombinationStep[] {
   }
 
   console.log('%c[Vault Combo]', `color: gold;`, 
-              `value: ${combo[0].value} -> direction: ${combo[0].direction}`,
-              `value: ${combo[1].value} -> direction: ${combo[1].direction}`,
-              `value: ${combo[2].value} -> direction: ${combo[2].direction}`);
+              `${combo[0].direction} -> ${combo[0].value}`,
+              `${combo[1].direction}  -> ${combo[1].value}`,
+              `${combo[2].direction} -> ${combo[1].value}`);
   return combo;
 }
