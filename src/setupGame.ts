@@ -6,7 +6,6 @@ import { Scene } from './setup/createScene';
 import { UI } from './setup/createUI';
 import { Zone } from './setup/createClickZones';
 import { VaultController } from './setup/createVault';
-import { timerUI } from './setup/setupTimer';
 import gsap from 'gsap';
 
 export function setupGame(app: Application) {
@@ -14,10 +13,6 @@ export function setupGame(app: Application) {
 
   const scene = new Scene();
   const ui = new UI();
-  const timer = new timerUI();
-
-  timer.startTimer();
-  app.stage.addChild(scene, ui, timer);
 
   const controller = new VaultController({
     scene,
@@ -69,6 +64,8 @@ export function setupGame(app: Application) {
     scene.pivot.set(DESIGN_WIDTH / 2, DESIGN_HEIGHT / 2);
     scene.position.set(app.screen.width / 2, app.screen.height / 2);
     scene.scale.set(scale);
+    app.stage.addChild(scene);
+    scene.timerUI.startTimer();
   };
   resize();
   window.addEventListener('resize', resize);
