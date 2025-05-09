@@ -1,4 +1,7 @@
-export type Direction = 'CLOCKWISE' | 'COUNTERCLOCKWISE';
+export enum Direction {
+  CLOCKWISE = 'CLOCKWISE',
+  COUNTERCLOCKWISE = 'COUNTERCLOCKWISE',
+};
 
 export interface CombinationStep {
   value: number;        
@@ -8,7 +11,7 @@ export interface CombinationStep {
 const numOfCombs = 3;
 export function generateCombination(): CombinationStep[] {
   const combo: CombinationStep[] = [];
-  const directions: Direction[] = ['CLOCKWISE', 'COUNTERCLOCKWISE'];
+  const directions: Direction[] = Object.values(Direction);
   const startIndex = Math.floor(Math.random() * 2);
 
   for (let i = 0; i < numOfCombs; i++) {
