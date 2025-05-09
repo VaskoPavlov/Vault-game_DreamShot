@@ -3,8 +3,10 @@ import { Text } from '@pixi/text';
 import { wait } from '../utils/utils';
 import { CombinationStep, Direction } from '../game/combo';
 import { Vault } from '../game/vault';
+import { Scene } from './createScene';
 
 export interface VaultControllerOptions {
+  scene: Scene;
   combo: CombinationStep[];
   door: Sprite;
   handle: Sprite;
@@ -37,6 +39,7 @@ export class VaultController {
 
   private async handleSuccess(): Promise<void> {
     const {
+      scene,
       statusText,
       door,
       handle,
@@ -46,16 +49,17 @@ export class VaultController {
       reset,
     } = this.options;
 
+    scene.openDoor();
+
     statusText.text = '✔ Vault Unlocked!';
     statusText.style.fill = 0x00ff00;
 
-    const parent = door.parent!;
-    handle.destroy();
-    handleShadow.destroy();
-    door.destroy();
+    door.visible = false;
+    handle.visible = false;
+    handleShadow.visible = false;
 
-    parent.addChild(doorOpenShadow);
-    parent.addChild(doorOpen);
+    doorOpen.visible = true;
+    doorOpenShadow.visible = true;
 
     await wait(5000);
     reset();
@@ -70,9 +74,3 @@ export class VaultController {
     reset();
   }
 }
-
-
-// Usage example:
-// const controller = new VaultController({ combo, door, handle, handleShadow, doorOpen, doorOpenShadow, statusText, reset });
-// leftZone.on('pointerdown', () => controller.inputTurn('COUNTERCLOCKWISE'));
-// rightZone.on('pointerdown', () => controller.inputTurn('CLOCKWISE'));

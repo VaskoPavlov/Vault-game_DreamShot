@@ -1,4 +1,3 @@
-// main.ts
 import { Application } from '@pixi/app';
 import { Rectangle } from '@pixi/math';
 import '@pixi/events';

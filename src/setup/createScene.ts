@@ -48,11 +48,24 @@ export class Scene extends Container {
     this.doorOpen.x = DOOROPEN_X;
     this.doorOpen.y = DOOROPEN_Y;
     this.addChild(this.doorOpen);
+    this.doorOpen.visible = false;
+    
 
     this.doorOpenShadow = Sprite.from('assets/doorOpenShadow.png');
     this.doorOpenShadow.anchor.set(0.5);
     this.doorOpenShadow.x = DOOROPENSHADOW_X;
     this.doorOpenShadow.y = DOOROPENSHADOW_Y;
     this.addChild(this.doorOpenShadow);
+    this.doorOpenShadow.visible = false;
+
   }
+
+    public openDoor(): void {
+      this.door.visible = false;
+      this.handle.visible = false;
+      this.handleShadow.visible = false;
+
+      this.doorOpenShadow.visible = true;
+      this.doorOpen.visible = true;
+    }
 }

@@ -26,7 +26,7 @@ export class timerUI extends Container {
       align: 'center',
     }));
     this.timerText.anchor.set(0.5);
-    this.timerText.position.set(390, 290);
+    this.timerText.position.set(573, 284);
     this.addChild(this.timerText);
   }
 

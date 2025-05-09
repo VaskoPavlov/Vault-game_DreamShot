@@ -1,4 +1,4 @@
-// setupGame.ts
+
 import { Application } from '@pixi/app';
 import { generateCombination, Direction } from './game/combo';
 import { DESIGN_WIDTH, DESIGN_HEIGHT } from './utils/consts/constants';
@@ -6,7 +6,7 @@ import { Scene } from './setup/createScene';
 import { UI } from './setup/createUI';
 import { Zone } from './setup/createClickZones';
 import { VaultController } from './setup/createVault';
-import { timerUI } from './setup/setupTimer'
+import { timerUI } from './setup/setupTimer';
 import gsap from 'gsap';
 
 export function setupGame(app: Application) {
@@ -15,19 +15,19 @@ export function setupGame(app: Application) {
   const scene = new Scene();
   const ui = new UI();
   const timer = new timerUI();
-  app.stage.addChild(scene, ui);
 
-  
   timer.startTimer();
+  app.stage.addChild(scene, ui, timer);
 
   const controller = new VaultController({
-    combo:        secretCombo,
-    door:         scene.door,
-    handle:       scene.handle,
+    scene,
+    combo: secretCombo,
+    door: scene.door,
+    handle: scene.handle,
     handleShadow: scene.handleShadow,
-    doorOpen:     scene.doorOpen,
+    doorOpen: scene.doorOpen,
     doorOpenShadow: scene.doorOpenShadow,
-    statusText:   ui.statusText,
+    statusText: ui.statusText,
     reset: () => {
       gsap.to([scene.handle, scene.handleShadow], {
         rotation: '+=1080',
@@ -36,30 +36,38 @@ export function setupGame(app: Application) {
         onComplete: () => {
           app.stage.removeChildren();
           setupGame(app);
-        }
+        },
       });
-    }
+    },
   });
 
-  const leftZone = new Zone({
-    side: 'left',
-    onTurn: (dir) => controller.inputTurn(0,dir),
-  });
-  const rightZone = new Zone({
-    side: 'right',
-    onTurn: (dir) => controller.inputTurn(0,dir),
-  });
-  
+  let currentRotation = 0;
+  function handleTurn(direction: Direction) {
+    controller.inputTurn(currentRotation, direction);
+
+    const delta = direction === 'CLOCKWISE' ? 60 : -60;
+    currentRotation += delta;
+    const radians = (currentRotation * Math.PI) / 180;
+
+    gsap.to([scene.handle, scene.handleShadow], {
+      rotation: radians,
+      duration: 0.4,
+      ease: 'power2.out',
+    });
+  }
+
+  const leftZone = new Zone({ side: 'left', onTurn: handleTurn });
+  const rightZone = new Zone({ side: 'right', onTurn: handleTurn });
   scene.addChild(leftZone, rightZone);
 
   const resize = () => {
     app.renderer.resize(window.innerWidth, window.innerHeight);
     const scale = Math.min(
-      app.screen.width  / DESIGN_WIDTH,
+      app.screen.width / DESIGN_WIDTH,
       app.screen.height / DESIGN_HEIGHT
     );
-    scene.pivot.set(DESIGN_WIDTH/2, DESIGN_HEIGHT/2);
-    scene.position.set(app.screen.width/2, app.screen.height/2);
+    scene.pivot.set(DESIGN_WIDTH / 2, DESIGN_HEIGHT / 2);
+    scene.position.set(app.screen.width / 2, app.screen.height / 2);
     scene.scale.set(scale);
   };
   resize();
