@@ -1,9 +1,9 @@
 import { Container } from '@pixi/display';
 import { Text, TextStyle } from '@pixi/text';
+import { TIMER_X, TIMER_Y } from '../utils/consts/constants';
 
 
-export class timerUI extends Container {
-  public statusText: Text;
+export class TimerUI extends Container {
   public timerText: Text;
 
   private timerInterval?: ReturnType<typeof setInterval>;
@@ -12,26 +12,15 @@ export class timerUI extends Container {
   constructor() {
     super();
 
-    this.statusText = new Text('', new TextStyle({
-      fontSize: 32,
-      fill: 0x000000,
-    }));
-    this.statusText.position.set(50, 50);
-    this.addChild(this.statusText);
-
     this.timerText = new Text('00:00', new TextStyle({
       fontFamily: 'Courier',
       fontSize: 14,
       fill: 0xffffff,
       align: 'center',
     }));
-    this.timerText.anchor.set(0.5);
-    this.timerText.position.set(573, 284);
+    this.timerText.anchor.set(0.7);
+    this.timerText.position.set(TIMER_X, TIMER_Y);
     this.addChild(this.timerText);
-  }
-
-  public setStatus(text: string): void {
-    this.statusText.text = text;
   }
 
   public setTimer(minutes: number, seconds: number): void {

@@ -8,3 +8,5 @@ export const DOOROPENSHADOW_X = 950;
 export const DOOROPENSHADOW_Y = 300;
 export const HANDLE_X = 635;
 export const RADIUS_STEP = 60;
+export const TIMER_X = 397;
+export const TIMER_Y = 292;

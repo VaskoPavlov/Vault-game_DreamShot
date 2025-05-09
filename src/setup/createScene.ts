@@ -9,7 +9,10 @@ import {
   DOOROPEN_Y,
   DOOROPENSHADOW_X,
   DOOROPENSHADOW_Y,
+  TIMER_X,
+  TIMER_Y,
 } from '../utils/consts/constants';
+import { TimerUI } from './setupTimer';
 
 export class Scene extends Container {
   public bg: Sprite;
@@ -18,6 +21,7 @@ export class Scene extends Container {
   public handleShadow: Sprite;
   public doorOpen: Sprite;
   public doorOpenShadow: Sprite;
+  public timerUI: TimerUI;
 
   constructor() {
     super();
@@ -58,6 +62,9 @@ export class Scene extends Container {
     this.addChild(this.doorOpenShadow);
     this.doorOpenShadow.visible = false;
 
+    this.timerUI = new TimerUI();
+    this.addChild(this.timerUI);
+
   }
 
     public openDoor(): void {
@@ -67,5 +74,10 @@ export class Scene extends Container {
 
       this.doorOpenShadow.visible = true;
       this.doorOpen.visible = true;
+    }
+
+    public resize(screenW: number, screenH: number) {
+      const scale = Math.min(screenW / DESIGN_WIDTH, screenH / DESIGN_HEIGHT);
+      this.scale.set(scale);
     }
 }
