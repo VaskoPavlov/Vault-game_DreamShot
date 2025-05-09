@@ -9,8 +9,6 @@ import {
   DOOROPEN_Y,
   DOOROPENSHADOW_X,
   DOOROPENSHADOW_Y,
-  TIMER_X,
-  TIMER_Y,
 } from '../utils/consts/constants';
 import { TimerUI } from './setupTimer';
 
