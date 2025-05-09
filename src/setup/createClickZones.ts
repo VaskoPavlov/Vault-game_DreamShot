@@ -1,7 +1,7 @@
 import { Graphics } from '@pixi/graphics';
 import { Rectangle } from '@pixi/math';
 import { DESIGN_WIDTH, DESIGN_HEIGHT } from '../utils/consts/constants';
-import type { Direction } from '../game/combo';
+import { Direction } from '../game/combo';
 
 export type ZoneSide = 'left' | 'right';
 
@@ -46,8 +46,9 @@ export class Zone extends Graphics {
   }
 
   private handleClick(): void {
-    const direction: Direction =
-      this.side === 'left' ? 'COUNTERCLOCKWISE' : 'CLOCKWISE';
+    const direction = this.side === 'left' 
+      ? Direction.COUNTERCLOCKWISE 
+      : Direction.CLOCKWISE;
     this.callback(direction);
   }
 }
