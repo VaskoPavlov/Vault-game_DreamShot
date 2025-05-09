@@ -14,6 +14,8 @@ export function setupGame(app: Application) {
   const scene = new Scene();
   const ui = new UI();
 
+  scene.addChild(ui)
+
   const controller = new VaultController({
     scene,
     combo: secretCombo,
